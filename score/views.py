@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
+from django.db.models import Sum, Count, Avg
+
 from score.models import Score
 from user.models import User
 from cloth.models import Cloth
@@ -39,7 +41,7 @@ def score(request):
             else:
                 return HttpResponse(json.dumps(dict(request_info = 'ERROR!'), ensure_ascii = False))
             
-        elif query_type == 'get_score':
+        elif query_type == 'get_user_score':
             user_name = request.GET['user']
             user = User.objects.get(name = user_name)
             
@@ -55,6 +57,14 @@ def score(request):
                 result['score'] = arr[0].score
             else:
                 return HttpResponse(json.dumps(dict(request_info = 'ERROR!'), ensure_ascii = False))
+            
+            return HttpResponse(json.dumps(result, ensure_ascii = False))
+            
+        elif query_type == 'get_avg_score':
+            cloth_name = request.GET['cloth']
+            cloth = Cloth.objects.get(name = cloth_name)
+            
+            result = cloth.score_set.all().values('score').aggregate(avg_score = Avg('score'))
             
             return HttpResponse(json.dumps(result, ensure_ascii = False))
             

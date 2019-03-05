@@ -12,7 +12,7 @@ import json
 
 '''
 cloth user cloth_number total_price time
-create(cloth, user) # 创建交易
+create(cloth, user, color, size) # 创建交易
 query_id(id) # 询问id号交易
 query_sum_by_user(user) # 询问关于user交易的数量和交易额
 query_sum_by_cloth(cloth) # 询问关于cloth交易的数量和交易额
@@ -26,6 +26,8 @@ def get_trade_info(trade):
                       user = str(trade.user),
                       cloth_number = trade.cloth_number,
                       total_price = str(trade.total_price),
+                      color = str(trade.color),
+                      size = str(trade.size),
                       time = trade.time.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S"), )
     return json.dumps(trade_info, ensure_ascii = False)
 
@@ -35,6 +37,8 @@ def trade(request):
         if query_type == 'create':
             cloth_name = request.GET['cloth']
             user_name = request.GET['user']
+            color = request.GET['color']
+            size = request.GET['size']
             
             cloth = Cloth.objects.get(cloth_name)
             user = User.objects.get(user_name)
@@ -45,8 +49,10 @@ def trade(request):
             trade = Trade.objects.create(cloth = cloth,
                                          user = user,
                                          cloth_number = cloth_number,
-                                         total_price = total_price)
-                                 
+                                         total_price = total_price,
+                                         color = color,
+                                         size = size)
+            
             return HttpResponse(json.dumps(dict(traid_id = traid.id, request_info = "CREATED!"), ensure_ascii = False))
             
         elif query_type == 'query_id':
