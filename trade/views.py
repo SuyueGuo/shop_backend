@@ -40,8 +40,8 @@ def trade(request):
             color = request.GET['color']
             size = request.GET['size']
             
-            cloth = Cloth.objects.get(cloth_name)
-            user = User.objects.get(user_name)
+            cloth = Cloth.objects.get(name = cloth_name)
+            user = User.objects.get(name = user_name)
             
             cloth_number = int(request.GET['cloth_number'])
             total_price = request.GET['total_price']
