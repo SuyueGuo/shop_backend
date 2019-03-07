@@ -108,7 +108,7 @@ def zhongchou(request):
             
             return HttpResponse(json.dumps(zhongchou_info, ensure_ascii = False))
         
-        elif query_type == 'get_info':
+        elif query_type == 'get_user_info':
             zhongchou_id = int(request.GET['id'])
             zhongchou = ZhongChou.objects.get(id = zhongchou_id)
             
@@ -123,6 +123,14 @@ def zhongchou(request):
                                   number = zhongchou_detail.number,
                                   paid = zhongchou_detail.paid, )
             
+            return HttpResponse(json.dumps(zhongchou_info))
+            
+        elif query_type == 'get_info':
+            zhongchou_id = int(request.GET['id'])
+            zhongchou = ZhongChou.objects.get(id = zhongchou_id)
+            
+            zhongchou_info = dict(total_number = zhongchou.total_number,
+                                  paid_number = zhongchou.paid_number, )
             return HttpResponse(json.dumps(zhongchou_info))
             
         elif query_type == 'query_number_by_user':

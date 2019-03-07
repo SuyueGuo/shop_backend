@@ -53,7 +53,7 @@ def trade(request):
                                          color = color,
                                          size = size)
             
-            return HttpResponse(json.dumps(dict(traid_id = traid.id, request_info = "CREATED!"), ensure_ascii = False))
+            return HttpResponse(json.dumps(dict(trade_id = trade.id, request_info = "CREATED!"), ensure_ascii = False))
             
         elif query_type == 'query_id':
             trade_id = request.GET['id']

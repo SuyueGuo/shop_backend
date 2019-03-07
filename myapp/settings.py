@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'designer',
     'score',
     'recommend',
+    'comment',
 ]
 
 MIDDLEWARE = [
