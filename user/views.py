@@ -4,7 +4,6 @@ from django.http import HttpResponse
 from user.models import User
 import json
 
-#type = create/modify/get 账号 密码 地址 电话
 def user(request):
     try:
         query_type = request.GET['type']

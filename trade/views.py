@@ -10,16 +10,6 @@ from user.models import User
 from datetime import datetime, timedelta, timezone
 import json
 
-'''
-cloth user cloth_number total_price time
-create(cloth, user, color, size) # 创建交易
-query_id(id) # 询问id号交易
-query_sum_by_user(user) # 询问关于user交易的数量和交易额
-query_sum_by_cloth(cloth) # 询问关于cloth交易的数量和交易额
-query_user_by_time(user, i) # 询问user最近第i个交易的信息
-query_cloth_by_time(cloth, i) # 询问cloth最近第i个交易的信息
-'''
-
 def get_trade_info(trade):
     trade_info = dict(id = trade.id,
                       cloth = str(trade.cloth),

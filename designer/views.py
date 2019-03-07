@@ -6,14 +6,6 @@ from designer.models import Designer
 
 import json
 
-'''
-设计师： 账号 简介
-create(name, intro) # 创建设计师
-modify(name, intro) # 修改设计师信息
-get_info(name) # 获取设计师信息（包括服装数，intro）
-get_cloth_by_time(name, i) # 获取设计师最近第i个服装
-'''
-
 def designer(request):
     try:
         query_type = request.GET['type']

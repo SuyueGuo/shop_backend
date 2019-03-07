@@ -9,13 +9,6 @@ from rbm.models import RBM
 import numpy as np
 import json
 
-'''
-推荐：   
-recommend
-train() # 训练模型
-get_recommend(user, begin, end) # 获取推荐给user中前begin到end名的商品名和概率
-'''
-
 score_table = [0.0, 0.0, 0.2, 0.5, 0.8, 1.0]
 
 def get_train_data():

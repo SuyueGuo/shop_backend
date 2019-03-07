@@ -11,19 +11,6 @@ import json
 
 limit_of_zhongchou = 100 # 众筹上限
 
-'''
-user cloth number finished
-create(cloth) # 创建众筹，返回id
-add(id, user, number) # 众筹数+number，并检查finished
-pay(id, uesr) # user支付了第id个众筹的费用
-state(id) # 返回finished
-info(id, user) # 返回第id个众筹里，user的相关信息
-query_number_by_user(user) # 询问关于user众筹的数量
-query_number_by_cloth(cloth) # 询问关于cloth众筹的数量
-query_user_by_time(sort_by, user, i) # 询问user最近第i个众筹的编号（按创立或最后申请的时间, create/last）
-query_cloth_by_time(sort_by, cloth, i) # 询问cloth最近第i个众筹的编号（按创立或最后申请的时间, create/last）
-'''
-
 def all_paid_zhongchou(zhongchou):
     pass
 
@@ -35,7 +22,7 @@ def get_zhongchou_info(zhongchou):
                           finished = zhongchou.finished,
                           start_time = zhongchou.start_time.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S"),
                           last_time = zhongchou.last_time.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S"), )
-    return json.dumps(zhongchou_info, ensure_ascii = True)
+    return json.dumps(zhongchou_info, ensure_ascii = False)
 
 
 def zhongchou(request):

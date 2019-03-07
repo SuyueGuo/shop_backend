@@ -7,13 +7,6 @@ from designer.models import Designer
 from datetime import datetime, timedelta, timezone
 import json
 
-'''
-衣服：  名字 介绍 价格 折扣 设计师 发布时间
-create(name, intro, price, disc_price, designer) # 创建衣服数据
-modify(name, intro, price, disc_price, designer) # 修改衣服数据
-get(name) # 根据name返回intro, price, disc_price, disigner, publish_time
-'''
-
 def cloth(request):
     try:
         query_type = request.GET['type']

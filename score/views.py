@@ -9,13 +9,6 @@ from cloth.models import Cloth
 
 import json
 
-'''
-评分：   用户 衣服 打分
-score
-modify(user, cloth, score) # 修改用户对衣服的打分
-get_score(user, cloth) # 获取用户对衣服的打分
-'''
-
 def score(request):
     try:
         query_type = request.GET['type']
