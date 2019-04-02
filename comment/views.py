@@ -12,6 +12,8 @@ import json
 
 def get_comment_info(comment):
     comment_info = dict(id = comment.id,
+                        user = str(comment.user),
+                        cloth = str(comment.cloth),
                         content = comment.content,
                         create_time = comment.create_time.astimezone(timezone(timedelta(hours=8))).strftime("%Y-%m-%d %H:%M:%S"), )
     return json.dumps(comment_info, ensure_ascii = False)
