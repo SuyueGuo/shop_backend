@@ -11,7 +11,7 @@ from datetime import datetime, timedelta, timezone
 import json
 
 def get_trade_info(trade):
-    trade_info = dict(id = trade.id,
+    trade_info = dict(id = trade.trade_id,
                       cloth = str(trade.cloth),
                       user = str(trade.user),
                       cloth_number = trade.cloth_number,
@@ -25,13 +25,15 @@ def trade(request):
     try:
         query_type = request.GET['type']
         if query_type == 'create':
-            cloth_name = request.GET['cloth']
-            user_name = request.GET['user']
+            cloth_id = request.GET['cloth']
+            user_id = request.GET['user']
             color = request.GET['color']
             size = request.GET['size']
-            
-            cloth = Cloth.objects.get(name = cloth_name)
-            user = User.objects.get(name = user_name)
+
+            nowtime = datetime.now().strftime('%Y%m%d%H%M%S')
+            trade_id = nowtime + cloth_id + user_id
+            cloth = Cloth.objects.get(cloth_id = cloth_id)
+            user = User.objects.get(user_id = user_id)
             
             cloth_number = int(request.GET['cloth_number'])
             total_price = request.GET['total_price']
@@ -41,13 +43,14 @@ def trade(request):
                                          cloth_number = cloth_number,
                                          total_price = total_price,
                                          color = color,
-                                         size = size)
+                                         size = size,
+                                         trade_id = trade_id)
             
             return HttpResponse(json.dumps(dict(trade_id = trade.id, request_info = "CREATED!"), ensure_ascii = False))
             
         elif query_type == 'query_id':
             trade_id = request.GET['id']
-            trade = Trade.objects.get(id = trade_id)
+            trade = Trade.objects.get(trade_id = trade_id)
             
             return HttpResponse(get_trade_info(trade))
             

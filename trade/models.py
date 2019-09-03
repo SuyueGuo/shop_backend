@@ -8,8 +8,15 @@ class Trade(models.Model):
     color = models.CharField(max_length = 30)
     size = models.CharField(max_length = 30)
     time = models.DateTimeField(auto_now = False, auto_now_add = True)
+    trade_id = models.CharField(max_length = 40, default='0')
+
+    def __str__(self):
+        return self.trade_id
     
-    
+'''
+trade_id = year + month + day + hour + minute + second + cloth_id + user_id
+'''
+
 '''
 cloth user cloth_number total_price time
 create(cloth, user) # 创建交易

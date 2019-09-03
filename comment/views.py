@@ -23,8 +23,8 @@ def comment(request):
         query_type = request.GET['type']
         
         if query_type == 'create':
-            user_name = request.GET['user']
-            user = User.objects.get(name = user_name)
+            user_id = request.GET['user']
+            user = User.objects.get(user_id = user_id)
             
             cloth_name = request.GET['cloth']
             cloth = Cloth.objects.get(name = cloth_name)
