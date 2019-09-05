@@ -24,6 +24,7 @@ from designer import views as designer_views
 from score import views as score_views
 from recommend import views as recommend_views
 from comment import views as comment_views
+from emailcheck import views as emailcheck_views
 
 urlpatterns = [
     path('user/', user_views.user, name = 'user'),
@@ -34,5 +35,6 @@ urlpatterns = [
     path('score/', score_views.score, name = 'score'),
     path('recommend/', recommend_views.recommend, name = 'recommend'),
     path('comment/', comment_views.comment, name = 'comment'),
+    path('emailcheck/', emailcheck_views.emailcheck, name = 'emailcheck'),
     path('admin/', admin.site.urls),
 ]

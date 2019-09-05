@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'score',
     'recommend',
     'comment',
+    'emailcheck',
 ]
 
 MIDDLEWARE = [
@@ -129,4 +130,18 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "myapp/templates/static/")
+
+STATICFILES_DIRS = [
+    ("css", os.path.join(STATIC_ROOT, 'css')),
+    ("images", os.path.join(STATIC_ROOT, 'images')),
+    ("js", os.path.join(STATIC_ROOT, 'js')),
+]
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'nodyeguochao@163.com'
+EMAIL_HOST_PASSWORD = 'ruciser123'
+FROM_EMAIL = '不染国潮 <nodyeguochao@163.com'
